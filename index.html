@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro to White Page</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Smooth transitions for background color */
+        body {
+            transition: background-color 0.8s ease-in-out;
+        }
+
+        /* Fade in and fade out keyframes for the logo */
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            30% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            70% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.05);
+            }
+        }
+
+        .animate-fade {
+            animation: fadeInOut 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+    </style>
+</head>
+<body id="page-body" class="bg-black h-full m-0 flex items-center justify-center overflow-hidden">
+
+    <!-- Logo Container -->
+    <div id="logo-container" class="flex flex-col items-center justify-center">
+        <img 
+            id="logo-img" 
+            src="logo.png" 
+            alt="Logo" 
+            class="w-32 h-32 md:w-48 md:h-48 object-contain animate-fade"
+        >
+    </div>
+
+    <!-- Main Content Revealed After Transition -->
+    <div id="main-content" class="hidden opacity-0 transition-opacity duration-1000 text-neutral-900 text-center p-8">
+        <h1 class="text-4xl md:text-6xl font-light tracking-tight mb-4">Welcome</h1>
+        <p class="text-neutral-500 text-sm md:text-base max-w-md mx-auto">The transition has completed to a pure white canvas.</p>
+    </div>
+
+    <script>
+        // Timing sequence: Total intro duration is exactly 2000ms (2 seconds)
+        window.addEventListener('DOMContentLoaded', () => {
+            const body = document.getElementById('page-body');
+            const logoContainer = document.getElementById('logo-container');
+            const mainContent = document.getElementById('main-content');
+
+            // After 2 seconds, switch background to white and reveal main content
+            setTimeout(() => {
+                // Fade out logo container smoothly
+                logoContainer.style.transition = 'opacity 0.5s ease';
+                logoContainer.style.opacity = '0';
+
+                setTimeout(() => {
+                    logoContainer.remove();
+                    // Switch background to pure white
+                    body.classList.remove('bg-black');
+                    body.classList.add('bg-white');
+
+                    // Show main content
+                    mainContent.classList.remove('hidden');
+                    setTimeout(() => {
+                        mainContent.classList.remove('opacity-0');
+                    }, 50);
+                }, 500); // match fade out duration
+
+            }, 2000); // 2 seconds total for the logo display
+        });
+    </script>
+</body>
+</html>
