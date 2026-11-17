@@ -18,11 +18,11 @@
                 opacity: 0;
                 transform: scale(0.95);
             }
-            30% {
+            15% {
                 opacity: 1;
                 transform: scale(1);
             }
-            70% {
+            85% {
                 opacity: 1;
                 transform: scale(1);
             }
@@ -43,7 +43,7 @@
     <div id="logo-container" class="flex flex-col items-center justify-center">
         <img 
             id="logo-img" 
-            src="logo-white.png" 
+            src="logo.png" 
             alt="Logo" 
             class="w-32 h-32 md:w-48 md:h-48 object-contain animate-fade"
         >
@@ -56,13 +56,13 @@
     </div>
 
     <script>
-        // Timing sequence: Total intro duration is exactly 2000ms (2 seconds)
+        // Timing sequence: Total intro duration is exactly 7000ms (7 seconds)
         window.addEventListener('DOMContentLoaded', () => {
             const body = document.getElementById('page-body');
             const logoContainer = document.getElementById('logo-container');
             const mainContent = document.getElementById('main-content');
 
-            // After 2 seconds, switch background to white and reveal main content
+            // After 7 seconds, switch background to white and reveal main content
             setTimeout(() => {
                 // Fade out logo container smoothly
                 logoContainer.style.transition = 'opacity 0.5s ease';
@@ -81,7 +81,7 @@
                     }, 50);
                 }, 500); // match fade out duration
 
-            }, 2000); // 2 seconds total for the logo display
+            }, 7000); // 7 seconds total for the logo display
         });
     </script>
 </body>
